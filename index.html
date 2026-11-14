@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markdown Live Preview</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#202936;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}.top{height:66px;background:#fff;border-bottom:1px solid #e4e8ee;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:12px}.brand{font-size:19px;font-weight:750;letter-spacing:-.5px}.brand span{color:#4263eb}.actions{display:flex;gap:9px;flex-wrap:wrap}button,.filebtn{font:inherit;font-size:13px;font-weight:600;border:1px solid #d8dfe9;background:#fff;border-radius:8px;padding:9px 13px;cursor:pointer;color:#334155}button:hover,.filebtn:hover{background:#f1f4fa}.primary{background:#4263eb;color:white;border-color:#4263eb}.primary:hover{background:#3451ce}.workspace{height:calc(100vh - 66px);display:grid;grid-template-columns:1fr 1fr;gap:0}.pane{min-width:0;display:flex;flex-direction:column}.pane:first-child{border-right:1px solid #dce2ea}.panehead{background:#f9fafc;border-bottom:1px solid #e4e8ee;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:750;color:#657185;text-transform:uppercase;letter-spacing:.8px}.status{font-weight:500;text-transform:none;letter-spacing:0}textarea{width:100%;height:100%;resize:none;border:0;outline:0;padding:27px 30px;font:14px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;background:#fff;color:#263347;tab-size:2}.previewwrap{overflow:auto;background:#fff;flex:1}.markdown{max-width:860px;margin:auto;padding:27px 38px 90px;font-size:15px;line-height:1.8;color:#273142;overflow-wrap:anywhere}.markdown h1,.markdown h2,.markdown h3,.markdown h4{line-height:1.3;color:#172033;margin:1.45em 0 .65em}.markdown h1{font-size:2em;border-bottom:1px solid #e6eaf0;padding-bottom:.35em;margin-top:.35em}.markdown h2{font-size:1.55em;border-bottom:1px solid #edf0f4;padding-bottom:.3em}.markdown h3{font-size:1.22em}.markdown p{margin:0 0 1.15em}.markdown a{color:#365bda;text-decoration:none}.markdown a:hover{text-decoration:underline}.markdown blockquote{border-left:4px solid #aab8f7;background:#f7f8ff;padding:12px 18px;margin:18px 0;color:#57647a}.markdown blockquote p:last-child{margin-bottom:0}.markdown code{font: .89em ui-monospace,SFMono-Regular,Consolas,monospace;background:#f1f3f7;border-radius:4px;padding:2px 5px}.markdown pre{background:#f6f8fa;border:1px solid #e6ebf0;border-radius:9px;padding:16px 18px;overflow:auto;line-height:1.55}.markdown pre code{background:transparent;padding:0}.markdown table{border-collapse:collapse;display:block;overflow:auto;margin:20px 0}.markdown th,.markdown td{border:1px solid #dce2e9;padding:8px 13px;text-align:left}.markdown th{background:#f6f8fc}.markdown tr:nth-child(even){background:#fafbfd}.markdown img{max-width:100%;border-radius:6px}.markdown hr{border:0;border-top:1px solid #e2e7ef;margin:28px 0}.markdown ul,.markdown ol{padding-left:27px}.markdown li{margin:3px 0}.markdown input[type=checkbox]{margin-right:8px}.hidden{display:none!important}@media(max-width:740px){.top{height:auto;min-height:66px;padding:14px;align-items:flex-start;flex-direction:column}.workspace{height:auto;display:flex;flex-direction:column}.pane:first-child{border-right:0;border-bottom:1px solid #dce2ea}textarea{height:36vh;min-height:220px}.previewwrap{min-height:50vh}.markdown{padding:20px}.actions{gap:6px}button,.filebtn{padding:7px 10px}}
+/* Spacious, wide reading layout */
+:root{background:#fff;color:#202938}
+.top{height:72px;padding:0 clamp(20px,4vw,76px);box-shadow:0 1px 0 #edf0f4;position:relative;z-index:1}
+.workspace{height:calc(100vh - 72px)}
+.previewwrap{background:#fff}
+.markdown{max-width:1500px;width:100%;padding:42px clamp(24px,5vw,88px) 120px;font-size:17px;line-height:1.85;color:#273244;letter-spacing:.005em}
+.markdown h1{font-size:2.15em;letter-spacing:-.035em}
+.markdown h2{font-size:1.65em;letter-spacing:-.025em}
+.markdown h3{font-size:1.3em}
+.markdown p{margin-bottom:1.25em}
+.markdown li{margin:7px 0}
+.markdown pre{padding:22px 26px;line-height:1.65}
+.markdown th,.markdown td{padding:12px 17px}
+.markdown blockquote{padding:17px 24px}
+.panehead{padding:12px clamp(24px,5vw,88px);background:#fff;color:#8a94a5}
+button,.filebtn{font-size:13px;padding:10px 15px}
+@media(max-width:740px){.top{height:auto;padding:14px 18px}.workspace{height:auto;min-height:calc(100vh - 110px)}.markdown{padding:26px 20px 80px;font-size:16px;line-height:1.8}.panehead{padding:12px 20px}.actions{gap:6px}button,.filebtn{padding:8px 10px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand"><span>✦</span> Markdown Live Preview</div><div class="actions"><label class="filebtn" for="upload">Open .md</label><input id="upload" class="hidden" type="file" accept=".md,.markdown,.txt,text/plain"><button id="clear">Clear</button><button id="copy">Copy HTML</button><button id="download">Download HTML</button><button id="toggle" class="primary">Show full preview</button></div></header>
+<main class="workspace" id="workspace"><section class="pane" id="editorPane"><div class="panehead">Markdown editor <span class="status" id="count"></span></div><textarea id="editor" spellcheck="false" placeholder="Paste your Markdown here..."></textarea></section><section class="pane"><div class="panehead">Live preview <span class="status" id="indicator">Ready</span></div><div class="previewwrap"><article class="markdown" id="preview"></article></div></section></main>
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script>
+const editor=document.getElementById('editor'),preview=document.getElementById('preview'),count=document.getElementById('count'),indicator=document.getElementById('indicator');
+const initial=`# Welcome to Markdown Live Preview
+
+Paste your **Markdown** to view a clean, full-width document.
+
+## Features
+
+- **Live rendering** as you type
+- Tables, links, images, and blockquotes
+- Syntax-highlighted code blocks
+- Copy or download rendered HTML
+- [x] Task lists supported
+
+> A simple, distraction-free Markdown editor.
+
+### Example code
+
+\`\`\`javascript
+const message = "Hello, Markdown!";
+console.log(message);
+\`\`\`
+
+| Feature | Available |
+| --- | --- |
+| Live preview | Yes |
+| HTML export | Yes |
+`;
+editor.value="";
+if(window.marked){marked.setOptions({gfm:true,breaks:true});}
+function render(){const value=editor.value;count.textContent=value.length.toLocaleString()+' characters';if(!window.marked||!window.DOMPurify){preview.textContent='Markdown libraries could not load. Please connect to the internet and reload.';indicator.textContent='Libraries unavailable';return;}preview.innerHTML=DOMPurify.sanitize(marked.parse(value));preview.querySelectorAll('pre code').forEach(el=>{if(window.hljs)hljs.highlightElement(el)});indicator.textContent='Updated';}
+editor.addEventListener('input',render);editor.addEventListener('paste',()=>setTimeout(()=>{render();showPreview();},0));editor.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const s=editor.selectionStart,t=editor.selectionEnd;editor.setRangeText('  ',s,t,'end');render()}});
+document.getElementById('clear').onclick=()=>{editor.value='';render();showEditor();editor.focus()};
+document.getElementById('upload').onchange=async e=>{const f=e.target.files[0];if(f){editor.value=await f.text();render();showPreview()}e.target.value=''};
+function exportedHTML(){return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Markdown Export</title><style>body{max-width:850px;margin:50px auto;padding:0 24px;font:16px/1.75 system-ui;color:#273142}pre{background:#f6f8fa;padding:18px;overflow:auto}code{background:#f1f3f7;padding:2px 5px}table{border-collapse:collapse}td,th{border:1px solid #ddd;padding:8px 12px}blockquote{border-left:4px solid #aab8f7;padding-left:18px;color:#57647a}img{max-width:100%}</style></head><body>'+preview.innerHTML+'</body></html>'}
+document.getElementById('copy').onclick=async e=>{try{await navigator.clipboard.writeText(preview.innerHTML);e.target.textContent='Copied!';setTimeout(()=>e.target.textContent='Copy HTML',1300)}catch{const t=document.createElement('textarea');t.value=preview.innerHTML;document.body.append(t);t.select();document.execCommand('copy');t.remove();e.target.textContent='Copied!';setTimeout(()=>e.target.textContent='Copy HTML',1300)}};
+document.getElementById('download').onclick=()=>{const blob=new Blob([exportedHTML()],{type:'text/html'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='markdown-preview.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+let previewOnly=false;
+const toggle=document.getElementById('toggle'),workspace=document.getElementById('workspace'),editorPane=document.getElementById('editorPane');
+function showPreview(){previewOnly=true;editorPane.classList.add('hidden');workspace.style.gridTemplateColumns='1fr';toggle.textContent='Paste another';document.querySelector('.previewwrap').scrollTop=0;}
+function showEditor(){previewOnly=false;editorPane.classList.remove('hidden');workspace.style.gridTemplateColumns='1fr 1fr';toggle.textContent='Show full preview';}
+toggle.onclick=()=>{if(previewOnly){showEditor();editor.value='';render();editor.focus()}else{showPreview()}};
+
+render();
+</script>
+</body></html>
